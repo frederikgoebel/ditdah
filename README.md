@@ -1,4 +1,12 @@
-# morsen
+# ditdah
+
+ditdah is an online morse code emulator. 
+Currently it features the following modes:
+- morse code to letters
+- letters to morse code
+
+A live version can be found [here](https://dist-ssswrvaynw.now.sh).
+
 
 ## Project setup
 ```
