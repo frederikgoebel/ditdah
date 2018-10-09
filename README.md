@@ -1,4 +1,4 @@
-# ditdah
+# `−·· ·· − −·· ·− ····` (ditdah)
 
 ditdah is an online morse code emulator. 
 Currently it features the following modes:
