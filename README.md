@@ -1,6 +1,6 @@
-# `−·· ·· − −·· ·− ····` (ditdah)
+# `−·· ·· − −·· ·− ····`
 
-ditdah is an online telegraph key emulator to generate morse code. 
+__ditdah__ is an online telegraph key emulator to generate morse code. 
 
 Currently it features the following modes:
 - morse code to letters
