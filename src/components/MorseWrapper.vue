@@ -1,7 +1,7 @@
 <template>
 <b-container fluid id="app" class="h-100 bg-dark">
   <b-row class="h-75">
-    <MorseInputBase key="morseInputBase" v-if="mode == 'free'" :speed="speed" :volume="volume" />
+    <MorseInputBase key="morseInputBase" v-if="mode == 'free'" :speed="speed" :volume="volume" :ditKey="ditKey" :dahKey="dahKey" />
     <MorseInputH2C key="morseInputH2C" v-if="mode == 'h2c'" :speed="speed" :volume="volume" />
   </b-row>
   <b-row class="bg-light h-25 pt-3 pb-3 justify-content-around">
@@ -26,17 +26,17 @@
     <b-col sm="2">
       <label>Usage</label>
       <br />
-      <p>
-        Dit-Key: <b-badge>.<br /></b-badge><br />
-        Dah-Key: <b-badge>-<br /></b-badge>
-      </p>
+      Dit-Key: <b-btn size="sm" v-b-modal.dit-key-changer>{{ditKey}}</b-btn>
+      Dah-Key: <b-btn size="sm" v-b-modal.dah-key-changer>{{dahKey}}</b-btn>
     </b-col>
     <b-col sm="2" align-self="end">
       <b-btn class="float-right" v-b-modal.about-modal>?</b-btn>
     </b-col>
   </b-row>
 
-  <!-- Modal Component -->
+  <KeySelection id="dit-key-changer" titel="Change Dit-Key" v-model="ditKey" />
+  <KeySelection id="dah-key-changer" titel="Change Dah-Key" v-model="dahKey" />
+
   <b-modal id="about-modal" centered title="ditdah">
     <h1>−·· ·· − −·· ·− ····</h1>
     <p class="my-4">ditdah is an online telegraph key emulator to generate morse code.
@@ -80,7 +80,7 @@
 import MorseInputBase from './MorseInputBase.vue'
 import MorseInputH2C from './MorseInputH2C.vue'
 import audioDriver from '../morser/audioDriver.js'
-
+import KeySelection from './KeySelection.vue'
 
 export default {
   name: "MorseWrapper",
@@ -89,7 +89,9 @@ export default {
       speed: 20,
       volume: 0.3,
       mode: 'free',
-      audioEnabled: false
+      audioEnabled: false,
+      ditKey: ".",
+      dahKey: "-"
     }
   },
   mounted() {
@@ -102,7 +104,8 @@ export default {
   },
   components: {
     MorseInputBase,
-    MorseInputH2C
+    MorseInputH2C,
+    KeySelection
   },
   methods: {
     enableAudio(event) {

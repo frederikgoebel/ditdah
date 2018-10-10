@@ -14,12 +14,29 @@ const textLength = 64
 
 export default {
   name: 'MorseInputBase',
-  props: ["speed", "volume"],
+  props: {
+    speed: {
+      type: Number,
+      default: 25
+    },
+    volume: {
+      type: Number,
+      default: 1
+    },
+    ditKey: {
+      type: String,
+      default: "."
+    },
+    dahKey: {
+      type: String,
+      default: "-"
+    }
+  },
   watch: {
-    speed: function(newVal) {
+    speed(newVal) {
       this.morser.setSpeed(1200 / newVal)
     },
-    volume: function(newVal) {
+    volume(newVal) {
       this.morser.audio.setVolume(newVal)
     }
   },
@@ -47,17 +64,18 @@ export default {
       if (event.repeat)
         return
       const keyName = event.key;
-      if (keyName == ".")
+      if (keyName == this.ditKey)
         this.morser.input.ditDown()
-      else if (keyName == "-")
+      if (keyName == this.dahKey)
         this.morser.input.dahDown()
     },
 
     keyUp: function(event) {
       const keyName = event.key;
-      if (keyName == ".") {
+      if (keyName == this.ditKey) {
         this.morser.input.ditUp()
-      } else if (keyName == "-") {
+      }
+      if (keyName == this.dahKey) {
         this.morser.input.dahUp()
       }
     }
