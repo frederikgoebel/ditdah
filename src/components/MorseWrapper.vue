@@ -4,11 +4,9 @@
     <MorseInputBase key="morseInputBase" v-if="mode == 'free'" :speed="speed" :volume="volume" />
     <MorseInputH2C key="morseInputH2C" v-if="mode == 'h2c'" :speed="speed" :volume="volume" />
   </b-row>
-  <b-row class="bg-light h-25 pt-3 pb-3">
-    <b-col sm="1">
-    </b-col>
+  <b-row class="bg-light h-25 pt-3 pb-3 justify-content-around">
     <b-col sm="2">
-      <b-form-group id="exampleInputGroup1" label="Words per minute" label-for="wpm" :description="'WPM:'+speed+' | Länge eines Dits: ' + Math.round(1200/speed)+' ms'">
+      <b-form-group id="exampleInputGroup1" label="Words per minute" label-for="wpm" :description="'WPM:'+speed+' | Length of a Dit: ' + Math.round(1200/speed)+' ms'">
         <b-form-input min="1" :value="speed" max="40" id="wpm" type="range" v-model="speed" required> </b-form-input>
       </b-form-group>
     </b-col>
@@ -17,7 +15,7 @@
         <b-form-input v-on:change="enableAudio" min="0" :value="volume" max="0.3" step="0.01" id="volume" type="range" v-model="volume" required> </b-form-input>
       </b-form-group>
     </b-col>
-    <b-col>
+    <b-col sm="2">
       <b-form-group label="Mode">
         <b-form-radio-group id="mode" v-model="mode">
           <b-form-radio value="free">Free</b-form-radio>
@@ -33,7 +31,48 @@
         Dah-Key: <b-badge>-<br /></b-badge>
       </p>
     </b-col>
+    <b-col sm="2" align-self="end">
+      <b-btn class="float-right" v-b-modal.about-modal>?</b-btn>
+    </b-col>
   </b-row>
+
+  <!-- Modal Component -->
+  <b-modal id="about-modal" centered title="ditdah">
+    <h1>−·· ·· − −·· ·− ····</h1>
+    <p class="my-4">ditdah is an online telegraph key emulator to generate morse code.
+      <br />
+      Features:
+      <ul>
+        <li>
+          Morse code to letters
+        </li>
+        <li>
+          Letters to morse code
+        </li>
+        <li>
+          Fixed timing dual-lever paddle input emulation
+        </li>
+      </ul>
+      WIP features:
+      <ul>
+        <li>
+          Exercise mode
+        </li>
+        <li>
+          Retro unfixed input emulation
+        </li>
+      </ul>
+    </p>
+    <p>
+      The source code can be found on <a href="https://github.com/frederikgoebel/ditdah">github</a>.
+    </p>
+
+    <div slot="modal-footer">
+      <p>
+        created by frederik göbel
+      </p>
+    </div>
+  </b-modal>
 </b-container>
 </template>
 
