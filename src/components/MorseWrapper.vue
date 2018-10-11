@@ -26,8 +26,18 @@
     <b-col sm="2">
       <label>Usage</label>
       <br />
-      Dit-Key: <b-btn size="sm" v-b-modal.dit-key-changer>{{ditKey}}</b-btn>
-      Dah-Key: <b-btn size="sm" v-b-modal.dah-key-changer>{{dahKey}}</b-btn>
+      <b-btn size="sm" v-b-modal.dit-key-changer>
+        Dit-Key: <b-badge pill variant="light">&nbsp;{{ditKey}}&nbsp;</b-badge>
+      </b-btn>
+      <br />
+      <br />
+      <b-btn size="sm" v-b-modal.dah-key-changer>
+        Dah-Key: <b-badge pill variant="light">&nbsp;{{dahKey}}&nbsp;</b-badge>
+      </b-btn>
+
+
+
+
     </b-col>
     <b-col sm="2" align-self="end">
       <b-btn class="float-right" v-b-modal.about-modal>?</b-btn>
