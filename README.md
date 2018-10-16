@@ -1,6 +1,6 @@
 # `−·· ·· − −·· ·− ····`
 
-__ditdah__ is an online telegraph key emulator to generate morse code. 
+__ditdah__ is an online telegraph key emulator to generate morse code.
 
 Currently it features the following modes:
 - morse code to letters
@@ -9,12 +9,12 @@ Currently it features the following modes:
 Rigth now only a dual-lever paddle with fixed timing is emulated.
 Use the `.` and the `-` keys for input.
 
-A live version can be found [here](https://dist-ssswrvaynw.now.sh).
+A live version can be found [here](https://dist-unrxhxsudn.now.sh/).
 
 
 ## Development
 ```
-# Install dependencies 
+# Install dependencies
 npm install
 
 # Compiles and hot-reloads for development
