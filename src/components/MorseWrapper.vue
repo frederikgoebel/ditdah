@@ -12,7 +12,7 @@
     </b-col>
     <b-col sm="2">
       <b-form-group id="volumeInputGroup" label="Volume" label-for="volume">
-        <b-form-input v-on:change="enableAudio" min="0" :value="volume" max="0.3" step="0.01" id="volume" type="range" v-model="volume" required> </b-form-input>
+        <b-form-input v-on:change="toggleAudio" min="0" :value="volume" max="0.3" step="0.01" id="volume" type="range" v-model="volume" required> </b-form-input>
       </b-form-group>
     </b-col>
     <b-col sm="2">
@@ -107,10 +107,10 @@ export default {
   mounted() {
     let self = this
     this.audioEnabled = audioDriver.state == "running"
-    this.volume = this.audioEnabled ? this.volume : 0.0
     audioDriver.onstatechange = function() {
       self.audioEnabled = audioDriver.state == "running"
     }
+    window.addEventListener("keydown", this.enableAudio)
   },
   components: {
     MorseInputBase,
@@ -118,12 +118,17 @@ export default {
     KeySelection
   },
   methods: {
-    enableAudio(event) {
+    toggleAudio(event) {
       if (event <= 0 && audioDriver.state == "running")
         audioDriver.suspend()
       else if (audioDriver.state == "suspended")
         audioDriver.resume()
+    },
+    enableAudio(event) {
+      audioDriver.resume()
+      window.removeEventListener("keydown", this.enableAudio)
     }
-  }
+  },
+
 }
 </script>
